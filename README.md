@@ -77,7 +77,7 @@ shiny::runApp()
 Or run it straight from this repository without cloning:
 
 ```r
-shiny::runGitHub("TAAORC-GVC-Model", "RetireBENt")
+shiny::runGitHub("kiwisaver-government-contribution-model", "Retirement-Commission")
 ```
 
 You do **not** need the source spreadsheet or the build script to run the model. The app reads the three prepared CSV files in this directory, which are committed here.
@@ -155,8 +155,14 @@ No licence is applied at this stage. This is prototype code shared for user test
 
 If you would like to reuse or build on it, get in touch and we will consider it. A formal open licence may follow if the model moves beyond a testing arrangement.
 
+## Hosting and ownership
+
+- Owned by Te Ara Ahunga Ora Retirement Commission. Business owner and technical owner: Te Ara Ahunga Ora Retirement Commission.
+- **Interim hosting:** the live app linked above runs on Posit Connect Cloud and is still published from the original repository (github.com/RetireBENt/TAAORC-GVC-Model), not from this one. Changes committed here do not reach the live app. The app is being moved to GitHub Pages (using Shinylive) under the Retirement Commission organisation, and this section will be updated when that is complete.
+- Until then, do not change the model in either repository without coordinating, so the two copies stay identical.
+
 ## Contact
 
-ben@retirement.govt.nz
+office@retirement.govt.nz
 
 Issues and corrections are welcome through this repository's issue tracker. If you find a discrepancy between a figure in the app and a figure in the methodology note, please raise it. Both are maintained together and should never disagree.
