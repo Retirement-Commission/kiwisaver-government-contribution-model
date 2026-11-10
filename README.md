@@ -12,9 +12,7 @@ The latest version of the model is available at https://retirement-commission.gi
 
 ## Status
 
-This is prototype code, shared so that users can interact with the model and give us feedback. It is not a finished product and it is not a Te Ara Ahunga Ora publication.
-
-The model is a research tool for comparing policy settings against each other. It is not a forecast, and its outputs do not constitute Te Ara Ahunga Ora advice or a recommendation on any policy option. Despite reasonable measures to ensure accuracy, Te Ara Ahunga Ora makes no warranty, express or implied, and accepts no liability for any loss arising from use of this model or its outputs.
+Prototype. Results may change as the model is developed. See Disclaimers and reuse below.
 
 ---
 
@@ -124,15 +122,15 @@ docs/
 |---|---|---|---|
 | `2024_IRD_Administrative_KiwiSaver_Data.xlsx` | Inland Revenue, custom extract prepared for the 2025 Review of Retirement Income Policies | The 2024 observed baseline, reproduced exactly rather than estimated | No. Figures transcribed into the build script as fixed values |
 | `IRD_Taxable_income_distribution_of_individuals_2025.xlsx` | Inland Revenue, published statistical release | Income bands, and the shape of the income distribution within each age band | Yes, in `build/source-data/` |
-| `IRD_KiwiSaver_Monitoring_Project_Data_at_30_June_2025.xlsx` | Inland Revenue, published statistical release | Member counts by age, contribution rates, and contributor status | No. Figures transcribed into the build script as fixed values |
+| `IRD_KiwiSaver_Monitoring_Project_Data_at_30_June_2025.xlsx` | Inland Revenue, customised extract provided to Te Ara Ahunga Ora | Member counts by age, contribution rates, and contributor status | No. Figures transcribed into the build script as fixed values |
 
 All three datasets originate with Inland Revenue. The taxable income distribution determines the shape of the income distribution within each age band only. Totals come from KiwiSaver monitoring data, so the model is anchored to observed membership rather than to estimates.
 
-The two published releases are available from Inland Revenue's website. The 2024 administrative extract was prepared for a specific piece of work and is not a published release; every figure drawn from it appears in the build script and in the methodology note.
+The taxable income distribution is a published statistical release, available from Inland Revenue's website. The 2024 administrative extract and the 2025 monitoring project data are customised extracts provided to Te Ara Ahunga Ora and are not published releases; every figure drawn from them appears in the build script and in the methodology note.
 
 ## Limitations
 
-This is a static microsimulation. It is a tool for comparing policy settings against each other, not a forecast.
+This is a static microsimulation, built for comparing policy settings against each other.
 
 - **No behavioural response**, other than the uptake setting, which is a sensitivity tool with no empirical basis rather than an estimate. Members are assumed not to change their contribution rate in response to a change in the GVC.
 - **Single year.** The model reports annual cost and distribution. It says nothing about lifetime effects, accumulated balances, or retirement income adequacy.
@@ -153,16 +151,21 @@ Policy analysis drawing on this model is published on the Te Ara Ahunga Ora webs
 
 Te Ara Ahunga Ora Retirement Commission (2026). _KiwiSaver Government Contribution microsimulation model_, version 14. https://retirement-commission.github.io/kiwisaver-government-contribution-model/
 
-## Licence
+## Disclaimers and reuse
 
-No licence is applied at this stage. This is prototype code shared for user testing, so all rights are reserved by default: you are welcome to read the code, run the app, and use the results in your own thinking, but not to redistribute or adapt the model.
+**Not official advice or a policy position.** This model is a research tool developed by Te Ara Ahunga Ora Retirement Commission to support analysis and discussion of KiwiSaver Government Contribution settings. It is not a forecast, and its outputs do not constitute Te Ara Ahunga Ora advice, a policy position, or a recommendation on any policy option.
 
-If you would like to reuse or build on it, get in touch and we will consider it. A formal open licence may follow if the model moves beyond a testing arrangement.
+**No warranty or liability.** The model is provided as-is and for research purposes only. Despite reasonable measures taken to ensure quality and accuracy, Te Ara Ahunga Ora makes no warranty or guarantee, express or implied, and accepts no legal liability or responsibility for the accuracy, correctness or completeness of the model or its outputs, or for any use made of them.
+
+**Not official statistics.** Results are model estimates, not official statistics. They are derived from Inland Revenue data: one published statistical release and two customised extracts provided to Te Ara Ahunga Ora (see Data sources above).
+
+**Reuse.** You may use, modify and adapt this code for your own work, provided Te Ara Ahunga Ora Retirement Commission is acknowledged as the source. While all care has been taken in developing this code, Te Ara Ahunga Ora gives no warranty that it is error-free and will not be liable for any loss or damage suffered as a result of its use, either directly or indirectly.
+
+**Feedback welcome.** We welcome suggestions, feedback and corrections. Please contact office@retirement.govt.nz. If you find a discrepancy between a figure in the app and a figure in the methodology note, please let us know: the two are maintained together and should never disagree.
 
 ## Hosting and ownership
 
-- Owned by Te Ara Ahunga Ora Retirement Commission. Business owner and technical owner: Te Ara Ahunga Ora Retirement Commission.
-- Live tool: https://retirement-commission.github.io/kiwisaver-government-contribution-model/
+- Business owner and technical owner: Te Ara Ahunga Ora Retirement Commission.
 - The live tool is hosted on GitHub Pages from this repository. It runs entirely in the user's web browser using Shinylive (R compiled to WebAssembly), so no server is involved. The first load downloads R into the browser and can take up to a minute; later visits are faster.
 - Imported into the Retirement Commission GitHub organisation on 10 November 2026 from github.com/RetireBENt/TAAORC-GVC-Model, with full commit history. That original repository and its earlier Posit Connect Cloud deployment are no longer maintained.
 
@@ -176,9 +179,3 @@ Every commit to `main` rebuilds and republishes the live tool automatically, so 
 4. The result is published to GitHub Pages, usually within 5 to 10 minutes. Progress and any errors appear in the Actions tab. If a build fails, the previous version stays live.
 
 If the app starts using a new data file, add it to `app_files` in `scripts/export-shinylive.R`. If it starts using a new R package, add it to the package list in `.github/workflows/deploy-app.yaml`.
-
-## Contact
-
-office@retirement.govt.nz
-
-Issues and corrections are welcome through this repository's issue tracker. If you find a discrepancy between a figure in the app and a figure in the methodology note, please raise it. Both are maintained together and should never disagree.
