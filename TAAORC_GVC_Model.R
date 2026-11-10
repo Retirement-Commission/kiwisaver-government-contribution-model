@@ -408,7 +408,7 @@ ui <- fluidPage(
 
   div(class="title-bar",
     tags$h2("KiwiSaver Government Contribution - Microsimulation Model"),
-    tags$p("Te Ara Ahunga Ora Retirement Commission  |  Internal Policy Tool  |  ",
+    tags$p("Te Ara Ahunga Ora Retirement Commission  |  ",
            "2024 IRD data baseline; 2025 KiwiSaver monitoring data for 2026 simulation")
   ),
 
