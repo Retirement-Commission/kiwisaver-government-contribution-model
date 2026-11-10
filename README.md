@@ -4,7 +4,7 @@ An interactive model for estimating the fiscal cost and distributional effects o
 
 Built and maintained by Te Ara Ahunga Ora Retirement Commission.
 
-The latest version of the model is available at https://retirebent-taaorc-gvc-model.share.connect.posit.cloud/
+The latest version of the model is available at https://retirement-commission.github.io/kiwisaver-government-contribution-model/
 
 **Model version:** v14. The version history in the methodology note is the authoritative record of what changed and when.
 
@@ -104,8 +104,12 @@ TAAORC_GVC_Model.R               The model and interface.
 dataset_2026.csv                 The 1,456-cell simulation grid.
 dataset_by_income.csv            2024 observed outturn by income band.
 dataset_by_age.csv               2024 observed outturn by age band.
-manifest.json                    Package and R version pins for deployment.
+favicon.ico                      Browser tab icon (from retirement.govt.nz).
 README.md                        This file.
+.github/workflows/
+  deploy-app.yaml                Builds and publishes the live tool on every commit to main.
+scripts/
+  export-shinylive.R             Converts the app with Shinylive and sets the tab title and icon.
 build/
   Build_dataset_for_GVC_model.R  Builds the three CSVs from source data.
   source-data/
@@ -147,7 +151,7 @@ Policy analysis drawing on this model is published on the Te Ara Ahunga Ora webs
 
 ## Citation
 
-Te Ara Ahunga Ora Retirement Commission (2026). _KiwiSaver Government Contribution microsimulation model_, version 14. https://retirebent-taaorc-gvc-model.share.connect.posit.cloud/
+Te Ara Ahunga Ora Retirement Commission (2026). _KiwiSaver Government Contribution microsimulation model_, version 14. https://retirement-commission.github.io/kiwisaver-government-contribution-model/
 
 ## Licence
 
@@ -158,8 +162,20 @@ If you would like to reuse or build on it, get in touch and we will consider it.
 ## Hosting and ownership
 
 - Owned by Te Ara Ahunga Ora Retirement Commission. Business owner and technical owner: Te Ara Ahunga Ora Retirement Commission.
-- **Interim hosting:** the live app linked above runs on Posit Connect Cloud and is still published from the original repository (github.com/RetireBENt/TAAORC-GVC-Model), not from this one. Changes committed here do not reach the live app. The app is being moved to GitHub Pages (using Shinylive) under the Retirement Commission organisation, and this section will be updated when that is complete.
-- Until then, do not change the model in either repository without coordinating, so the two copies stay identical.
+- Live tool: https://retirement-commission.github.io/kiwisaver-government-contribution-model/
+- The live tool is hosted on GitHub Pages from this repository. It runs entirely in the user's web browser using Shinylive (R compiled to WebAssembly), so no server is involved. The first load downloads R into the browser and can take up to a minute; later visits are faster.
+- Imported into the Retirement Commission GitHub organisation on 10 November 2026 from github.com/RetireBENt/TAAORC-GVC-Model, with full commit history. That original repository and its earlier Posit Connect Cloud deployment are no longer maintained.
+
+## How the live tool is built and updated
+
+Every commit to `main` rebuilds and republishes the live tool automatically, so test changes before committing. To test locally first, run `shiny::runApp()` from the repository root.
+
+1. GitHub Actions runs `.github/workflows/deploy-app.yaml` on every commit to `main`. It can also be run manually: Actions tab, then shinylive-deploy, then Run workflow.
+2. The workflow installs R and the `shinylive`, `shiny` and `dplyr` packages, then runs `scripts/export-shinylive.R`.
+3. The script copies only the files the app needs (`app.R`, `TAAORC_GVC_Model.R` and the three CSVs) into a temporary folder, converts them with Shinylive, and sets the browser tab title and icon.
+4. The result is published to GitHub Pages, usually within 5 to 10 minutes. Progress and any errors appear in the Actions tab. If a build fails, the previous version stays live.
+
+If the app starts using a new data file, add it to `app_files` in `scripts/export-shinylive.R`. If it starts using a new R package, add it to the package list in `.github/workflows/deploy-app.yaml`.
 
 ## Contact
 
