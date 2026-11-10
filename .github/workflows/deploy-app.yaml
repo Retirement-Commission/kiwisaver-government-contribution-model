@@ -1,0 +1,16 @@
+# Builds this Shiny app with Shinylive and publishes it to GitHub Pages.
+# Uses Posit's ready-made workflow: https://github.com/posit-dev/r-shinylive
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+name: shinylive-deploy
+
+jobs:
+  shinylive:
+    uses: posit-dev/r-shinylive/.github/workflows/deploy-app.yaml@actions-v1
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
